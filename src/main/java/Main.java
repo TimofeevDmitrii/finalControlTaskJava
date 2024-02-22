@@ -39,6 +39,8 @@ public class Main {
         model.getPrize(553);
 
 
+
+
 //        Toy doll = new Toy(1, "Кукла", 2);
 //        Toy robot = new Toy(2, "Робот", 6);
 //        Toy constructor = new Toy(3, "Конструктор", 2);
