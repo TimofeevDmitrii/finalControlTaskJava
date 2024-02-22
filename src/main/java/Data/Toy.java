@@ -1,3 +1,7 @@
+package Data;
+
+import java.util.Objects;
+
 public class Toy implements Comparable<Toy>{
 
     private int toyId;
@@ -31,7 +35,7 @@ public class Toy implements Comparable<Toy>{
         return toyWeight;
     }
 
-    public void setToyWeight(int toyWeight) {
+    public void setToyWeight(double toyWeight) {
         this.toyWeight = toyWeight;
     }
 
@@ -42,11 +46,25 @@ public class Toy implements Comparable<Toy>{
 
     @Override
     public int compareTo(Toy toy) {
-        if (this.toyWeight < toy.toyWeight)
+        if (this.toyWeight < toy.toyWeight)  // если в этом случае возвращается -1, то будет восходящая очередь
             return -1;
         else if (this.toyWeight == toy.toyWeight)
             return 0;
         else
             return 1;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Toy that = (Toy) o;
+        return this.toyId == that.toyId && Double.compare(this.toyWeight, that.toyWeight) == 0 && this.toyName.equals(that.toyName);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = this.toyName == null ? 0 : this.toyName.hashCode();
+        return 29*(result+this.toyId);
     }
 }
