@@ -1,4 +1,7 @@
-package Data;
+package Service;
+
+import Data.Toy;
+import Data.ToyStoreElement;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,7 +19,7 @@ public class ToyElementDataParser implements CreateToyElement {
     @Override
     public ToyStoreElement createToyElement(String toyData) {
         if (!checkToyData(toyData)){
-            throw new RuntimeException("Введены неверные данные для добавления игрушки");
+            throw new IllegalArgumentException("Введены неверные данные для добавления игрушки в хранилище");
         }
         else {
             String[] splitToyData = toyData.split(" ");

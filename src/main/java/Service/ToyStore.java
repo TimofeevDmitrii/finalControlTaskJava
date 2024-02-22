@@ -1,4 +1,6 @@
-package Data;
+package Service;
+
+import Data.ToyStoreElement;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,10 +13,21 @@ public class ToyStore {
         this.allToys = new ArrayList<>();
     }
 
-    public void addToyToStore(ToyStoreElement newToyElement){
+    public String addToyToStore(ToyStoreElement newToyElement){
         allToys.add(newToyElement);
-        System.out.println("В хранилище добавлена новая игрушка: "+newToyElement.getToy()+
-                ", количество="+newToyElement.getQuantity());
+        return "В хранилище добавлена новая игрушка: "+newToyElement.getToy()+
+                ", количество="+newToyElement.getQuantity();
+    }
+
+
+    public int getToyQuantity(int id){
+        for (ToyStoreElement toyStoreElement : allToys) {
+            if (toyStoreElement.getToy().getToyId() == id) {
+                return toyStoreElement.getQuantity();
+            }
+        }
+        System.out.printf("Игрушки с id=%s нет в хранилище%n", id);
+        return -1;
     }
 
 
