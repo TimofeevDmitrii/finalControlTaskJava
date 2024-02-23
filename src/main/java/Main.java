@@ -1,34 +1,36 @@
-import Data.Toy;
+import Controller.ToyShopController;
+import Model.ModelToyShop;
+import View.ConsoleView;
 
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 
 public class Main {
 
     public static void main(String[] args) {
 
 
-//        ToyShopController controller = new ToyShopController();
-//
-//        controller.addToyToLottery("Конструктор 2 300");
-//        controller.addToyToLottery("Робот 2 300");
-//        controller.addToyToLottery("Кукла 6 700");
-//
-//        controller.doToysLottery(1000);
+        ToyShopController controller = new Controller.ToyShopController(new ModelToyShop(), new ConsoleView());
 
-        ToyShopController controller = new ToyShopController();
-
-
-//        controller.addToyToLottery("Танк 3 400");
-//        controller.addToyToLottery("Самолет 2.3 300");
-//        controller.addToyToLottery("Робот 1.7 200");
-//        controller.addToyToLottery("Корабль 3 400");
-
-        controller.doToysLottery(346);
-
+        try {
+            controller.addToyToLottery("1 Конструктор 2 50");
+            controller.addToyToLottery("2 Робот 2 50");
+            controller.addToyToLottery("3 Кукла 6 80");
+            controller.doToysLottery(20);
+            controller.addToyToLottery("4 Корабль 4 80");
+            controller.setToyWeight(2, 3);
+            controller.setToyWeight(3, 5);
+            controller.doToysLottery(20);
+        } catch (Exception e) {
+            e.printStackTrace();
+            StringWriter sw = new StringWriter();
+            e.printStackTrace(new PrintWriter(sw));
+            String stackTraceString = sw.toString(); // Stack trace в формате строки!
+            controller.putMessageToLog(stackTraceString);
+        }finally {
+            controller.endProgramWork();
+        }
 
 
     }
