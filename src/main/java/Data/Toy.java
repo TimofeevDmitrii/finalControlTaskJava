@@ -59,12 +59,12 @@ public class Toy implements Comparable<Toy>{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Toy that = (Toy) o;
-        return this.toyId == that.toyId && Double.compare(this.toyWeight, that.toyWeight) == 0 && this.toyName.equals(that.toyName);
+        return this.toyName.equals(that.toyName);
     }
 
     @Override
     public int hashCode() {
         int result = this.toyName == null ? 0 : this.toyName.hashCode();
-        return 29*(result+this.toyId);
+        return result;
     }
 }

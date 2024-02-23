@@ -3,28 +3,28 @@ package Service;
 import Data.Toy;
 import Data.ToyStoreElement;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ToyElementDataParser implements CreateToyElement {
-    private int nextToyId=1;
 
     private boolean checkToyData(String toyData){
-        Pattern pattern = Pattern.compile("^[а-яА-Я]{1,20}\\s\\d*\\.?\\d+\\s\\d+$");
+        Pattern pattern = Pattern.compile("^\\d+\\s[а-яА-Я]{1,20}\\s\\d*\\.?\\d+\\s\\d+$");
         Matcher matcher = pattern.matcher(toyData);
         return matcher.find();
     }
 
 
     @Override
-    public ToyStoreElement createToyElement(String toyData) {
+    public ToyStoreElement createToyElement(String toyData) throws IOException{
         if (!checkToyData(toyData)){
-            throw new IllegalArgumentException("Введены неверные данные для добавления игрушки в хранилище");
+            throw new IOException(String.format("Введены неверные данные для добавления игрушки в хранилище: %s", toyData));
         }
         else {
             String[] splitToyData = toyData.split(" ");
-            Toy newToy = new Toy(nextToyId++, splitToyData[0], Double.parseDouble(splitToyData[1]));
-            return new ToyStoreElement(newToy, Integer.parseInt(splitToyData[2]));
+            Toy newToy = new Toy(Integer.parseInt(splitToyData[0]), splitToyData[1], Double.parseDouble(splitToyData[2]));
+            return new ToyStoreElement(newToy, Integer.parseInt(splitToyData[3]));
         }
     }
 }
