@@ -44,7 +44,7 @@ public class ToyShopController extends LotteryToysController {
 
 
     @Override
-    public void addToyToLottery(String toyData) throws IOException {
+    public void addToyToLottery(String toyData) throws IOException {  // на вход должна прийти строка типа: "id_игрушки имя_игрушки вес_игрушки количество_в_хранилище"
         sendToConsoleAndLog(model.putToyToStore(toyData));
     }
 
@@ -52,6 +52,11 @@ public class ToyShopController extends LotteryToysController {
     @Override
     public void setToyWeight(int id, double weight) {
         sendToConsoleAndLog(model.changeToyWeight(id, weight));
+    }
+
+    @Override
+    public void setToyQuantity(int id, int quantity) {
+        sendToConsoleAndLog(model.changeToyQuantity(id, quantity));
     }
 
     @Override

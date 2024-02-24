@@ -50,13 +50,15 @@ public class ToyStore {
 
 
     public String setToyQuantity(int id, int toyQuantity){
+        if (toyQuantity<0)
+            return "Внимание: количество игрушки не может быть отрицательным; изменения не были внесены: (id="+id+", quantity="+toyQuantity+")";
         for (ToyStoreElement toyStoreElement : allToysElements) {
             if (toyStoreElement.getToy().getToyId() == id) {
                 toyStoreElement.setQuantity(toyQuantity);
                 return String.format("Количество игрушки изменено: %s", toyStoreElement);
             }
         }
-        return String.format("Игрушки с id=%s нет в хранилище", id);
+        return "Внимание: игрушки с таким id нет в хранилище, изменения не были внесены: (id="+id+", quantity="+toyQuantity+")";
     }
 
 
@@ -67,7 +69,7 @@ public class ToyStore {
                 return String.format("Вес игрушки изменен: %s", toyStoreElement);
             }
         }
-        return String.format("Игрушки с id=%s нет в хранилище", id);
+        return "Внимание: игрушки с таким id нет в хранилище, изменения не были внесены: (id="+id+", weight="+toyWeight+")";
     }
 
 

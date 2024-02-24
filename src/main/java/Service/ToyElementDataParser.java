@@ -17,7 +17,7 @@ public class ToyElementDataParser implements CreateToyElement {
 
 
     @Override
-    public ToyStoreElement createToyElement(String toyData) throws IOException{
+    public ToyStoreElement createToyElement(String toyData) throws IOException{ // на вход должна прийти строка типа: "id_игрушки имя_игрушки вес_игрушки количество_в_хранилище"
         if (!checkToyData(toyData)){
             throw new IOException(String.format("Введены неверные данные для добавления игрушки в хранилище: %s", toyData));
         }

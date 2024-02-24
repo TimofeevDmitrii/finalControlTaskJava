@@ -21,4 +21,6 @@ public abstract class LotteryToysController {
     public abstract void addToyToLottery(String toyData) throws IOException;
 
     public abstract void setToyWeight(int id, double weight);
+
+    public abstract void setToyQuantity(int id, int quantity);
 }
