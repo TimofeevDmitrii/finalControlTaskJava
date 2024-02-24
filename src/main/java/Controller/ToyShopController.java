@@ -1,7 +1,7 @@
 package Controller;
 
 import Data.ToyStoreElement;
-import Model.ModelToyShop;
+import Model.ToyShopWithStore;
 import Service.SaveLotteryResults;
 import View.SendToConsole;
 
@@ -11,7 +11,7 @@ import java.io.IOException;
 public class ToyShopController extends LotteryToysController {
     private final SaveLotteryResults saver = new SaveLotteryResults("ToysLotteryResult.txt");
 
-    public ToyShopController(ModelToyShop model, SendToConsole view) {
+    public ToyShopController(ToyShopWithStore model, SendToConsole view) {
         super(model, view);
     }
 
